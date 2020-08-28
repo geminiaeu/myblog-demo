@@ -4,6 +4,7 @@ module.exports = {
         collapsable: true,
         sidebarDepth: 2,
         children: [
+            '/basicnote/',
             '/basicnote/Typora',
         ]
     }],
@@ -12,6 +13,7 @@ module.exports = {
         collapsable: true,
         sidebarDepth: 2,
         children: [
+            '/vuepressnote/',
             '/vuepressnote/VuePress',
         ]
     }]

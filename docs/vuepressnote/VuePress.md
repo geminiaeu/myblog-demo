@@ -545,8 +545,86 @@ module.exports = {
   }
 }
 ```
-## 第3章 插件
+## 第3章 部署
 
-## 第4章 主题
+1. 选择服务器
 
-## 第5章 部署
+服务器有免费和收费两种，各有优劣：
+-  使用 [Github Pages](https://links.jianshu.com/go?to=https%3A%2F%2Fpages.github.com%2F) 
+
+即 Github 提供的、用于搭建个人网站的静态站点托管服务。很多人用它搭建个人博客。这种方式的好处是免费、方便，坏处是速度可能会有些慢、不能被国内的搜索引擎收录。
+-  云服务器
+
+[阿里云](https://links.jianshu.com/go?to=https%3A%2F%2Fwww.aliyun.com%2Fproduct%2Fecs%3Fspm%3D5176.12825654.h2v3icoap.14.3dbd2c4aoQlEuZ%26aly_as%3DVluIMqElN)、[腾讯云](https://links.jianshu.com/go?to=https%3A%2F%2Fcloud.tencent.com%2Fact%2Fcampus%3FfromSource%3Dgwzcw.3180759.3180759.3180759%26utm_medium%3Dcpc%26utm_id%3Dgwzcw.3180759.3180759.3180759)，好处是速度有保证、可以被搜索引擎收录。
+
+2.  github创建仓库
+
+- 登录 [github](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2F)
+- 新建仓库一：仓库名称为：username.github.io （必须为github账户的username），负责显示网站内容。
+- 新建仓库二，仓库名称名称随意，如myblog-demo，负责日常开发和新增内容，并通过 npm run deploy 命令，将代码发布到仓库一
+
+3. 关联本地项目与github仓库
+
+```shell
+// 进入demo文件夹
+cd myblog
+// git初始化
+git init
+// 关联github仓库
+git remote add origin git@github.com:nan-gong/vuepress-demo.git
+```
+4. 新建部署文件
+
+- 根目录下新建`deploy.sh`:
+```bash
+# 确保脚本抛出遇到的错误
+set -e
+
+# 生成静态文件
+npm run build
+
+# 进入生成的文件夹
+cd docs/.vuepress/dist
+
+# 如果是发布到自定义域名
+# echo 'www.yourwebsite.com' > CNAME
+
+git init
+git add -A
+git commit -m 'deploy'
+
+# 如果你想要部署到 https://USERNAME.github.io
+git push -f git@github.com:nan-gong/geminiaeu.github.io.git master
+
+cd -
+```
+
+- 根目录新建README.md
+ 此文件为你的项目描述或用法，一般的git项目都会有此文件，和项目中的md文件无关。
+
+5. git提交
+
+```shell
+// 提交到暂存区
+git add .
+// 提交到本地仓库
+git commit -m '基本搭建完毕'
+// push到github仓库
+git push --set-upstream origin master
+```
+
+6.  新建deploy指令并执行
+
+package.json 文件夹中添加发布命令：
+
+```json
+"scripts": {
+  "deploy": "bash deploy.sh"
+}
+npm run deploy
+```
+
+7.  发布成功！
+
+查看自己的博客域名：https://geminiaeu.github.io/
+ 这样所有的人都能访问到该博客了

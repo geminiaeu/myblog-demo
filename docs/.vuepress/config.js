@@ -3,20 +3,20 @@ const sidebar = require('./config/sidebar/')
 module.exports = {
     title: 'xx博客',
     description: '欢迎来到我的博客',
-    dest: './dist',
+    // dest: '/.vuepress/dist',
     port: '7777',
     head: [
         ['link', { rel: 'icon', href: '/img/logo.jpg' }]
     ],
-    // markdown: {
-    //     lineNumbers: true
-    // },
+    markdown: {
+        lineNumbers: true
+    },
     themeConfig: {
         logo: '/img/logo.jpg',
         nav,
-        // sidebar
+        sidebar
     },
-    plugins: {
-        "vuepress-plugin-auto-sidebar": {}
-    }
+    // plugins: {
+    //     "vuepress-plugin-auto-sidebar": {}
+    // }
 }
