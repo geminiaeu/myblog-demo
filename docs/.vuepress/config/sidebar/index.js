@@ -2,7 +2,7 @@ module.exports = {
     '/basicnote/': [{
         title: 'Typora笔记',
         collapsable: true,
-        sidebarDepth: 2,
+        sidebarDepth: 3,
         children: [
             '/basicnote/',
             '/basicnote/Typora',
@@ -11,7 +11,7 @@ module.exports = {
     '/vuepressnote/': [{
         title: "VuePress笔记",
         collapsable: true,
-        sidebarDepth: 2,
+        sidebarDepth: 3,
         children: [
             '/vuepressnote/',
             '/vuepressnote/VuePress',

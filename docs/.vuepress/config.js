@@ -6,7 +6,7 @@ module.exports = {
     // dest: '/.vuepress/dist',
     port: '7777',
     head: [
-        ['link', { rel: 'icon', href: '/img/logo.jpg' }]
+        ["link", { rel: 'icon', href: "/img/logo.jpg" }],
     ],
     markdown: {
         lineNumbers: true

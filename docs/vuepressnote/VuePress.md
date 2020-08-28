@@ -4,8 +4,6 @@
 
 ### 1.1 VuePress概述
 
-VuePress 由两部分组成：第一部分是一个极简静态网站生成器，它包含由 Vue 驱动的主题系统和插件 API，另一个部分是为书写技术文档而优化的默认主题，它的诞生初衷是为了支持 Vue 及其子项目的文档需求。
-
 - Vue 驱动的静态网站生成器
 - 基于markdown语法生成网页
 - 可自定义和扩展样式
@@ -115,6 +113,14 @@ features:
 - title: 
   details: 阴霾渐渐散去
 ---
+::: tip 行路难
+金樽清酒斗十千，玉盘珍羞直万钱。<br />
+停杯投箸不能食，拔剑四顾心茫然。<br />
+欲渡黄河冰塞川，将登太行雪满山。<br />
+闲来垂钓碧溪上，忽复乘舟梦日边。<br />
+行路难，行路难，多歧路，今安在？<br />
+长风破浪会有时，直挂云帆济沧海
+:::
 ```
 
 6. 运行博客
@@ -328,22 +334,22 @@ module.exports = {
 // .vuepress\config\sidebar\index.js
 module.exports = {
     '/basicnote/': [
-        '',
         {
             title: 'Typora笔记',
             collapsable: true,
             sidebarDepth: 2,
             children: [
+                '/basicnote/',
                 '/basicnote/Typora',
             ]
         }
     ],
     '/vuepressnote/': [
-        '',
         {
             title: "VuePress笔记",
             collapsable: true,
             children: [
+                '/vuepressnote/',
                 '/vuepressnote/VuePress',
             ]
         }
@@ -429,7 +435,7 @@ $ mkdir public
 ```
 1. 图片
 
-   若要指定首页显示图片，# /docs/.vuepress/img/public目录下有一张head.jpg的图片那么需要将首页内容中的图片路径更改成如下
+   若要指定首页显示图片，/.vuepress/img/public目录下有一张head.jpg的图片那么需要将首页内容中的图片路径更改成如下
 ```yaml
 # \README.md
 heroImage: /img/head.jpg
@@ -475,7 +481,7 @@ $ touch main.js
 ```js
 // .vuepress\config.js
 head: [
-        ['link', {rel: 'icon', href: '/logo.jpg'}],
+        ["link", { rel: 'icon', href: "/img/logo.jpg" }],
         ["link", { rel: "stylesheet", href: "/css/style.css" }],
         ["script", { charset: "utf-8", src: "/js/main.js" }],
     ],
@@ -550,7 +556,7 @@ module.exports = {
 1. 选择服务器
 
 服务器有免费和收费两种，各有优劣：
--  使用 [Github Pages](https://links.jianshu.com/go?to=https%3A%2F%2Fpages.github.com%2F) 
+-  使用 [Github Pages](https://pages.github.com/) 
 
 即 Github 提供的、用于搭建个人网站的静态站点托管服务。很多人用它搭建个人博客。这种方式的好处是免费、方便，坏处是速度可能会有些慢、不能被国内的搜索引擎收录。
 -  云服务器
@@ -559,7 +565,7 @@ module.exports = {
 
 2.  github创建仓库
 
-- 登录 [github](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2F)
+- 登录 [github](https://github.com)
 - 新建仓库一：仓库名称为：username.github.io （必须为github账户的username），负责显示网站内容。
 - 新建仓库二，仓库名称名称随意，如myblog-demo，负责日常开发和新增内容，并通过 npm run deploy 命令，将代码发布到仓库一
 
@@ -571,7 +577,7 @@ cd myblog
 // git初始化
 git init
 // 关联github仓库
-git remote add origin git@github.com:nan-gong/vuepress-demo.git
+git remote add origin_ssh git@github.com:geminiaeu/myblog-demo.git
 ```
 4. 新建部署文件
 
@@ -594,7 +600,7 @@ git add -A
 git commit -m 'deploy'
 
 # 如果你想要部署到 https://USERNAME.github.io
-git push -f git@github.com:nan-gong/geminiaeu.github.io.git master
+git push -f git@github.com:geminiaeu/geminiaeu.github.io.git master
 
 cd -
 ```
@@ -608,7 +614,7 @@ cd -
 // 提交到暂存区
 git add .
 // 提交到本地仓库
-git commit -m '基本搭建完毕'
+git commit -m '8.28更新'
 // push到github仓库
 git push --set-upstream origin master
 ```
@@ -616,7 +622,6 @@ git push --set-upstream origin master
 6.  新建deploy指令并执行
 
 package.json 文件夹中添加发布命令：
-
 ```json
 "scripts": {
   "deploy": "bash deploy.sh"
@@ -624,7 +629,6 @@ package.json 文件夹中添加发布命令：
 npm run deploy
 ```
 
-7.  发布成功！
+7.  发布成功
 
-查看自己的博客域名：https://geminiaeu.github.io/
- 这样所有的人都能访问到该博客了
+查看自己的博客域名：https://geminiaeu.github.io，所有的人都能访问到该博客了
